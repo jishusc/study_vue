@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="current" name="" id="" />
+        <p></p>
+        <img v-bind:src="imgSrc" alt="" srcset="" />
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                current: '',
+                imgSrc: '',
+                imgSrcArr: [
+                    'http://t9.baidu.com/it/u=583874135,70653437&fm=79&app=86&f=JPEG?w=3607&h=2408',
+                    'http://t8.baidu.com/it/u=1484500186,1503043093&fm=79&app=86&f=JPEG',
+                    'http://t7.baidu.com/it/u=3617551227,359100887&fm=79&app=86&f=JPEG?w=1280&h=1017',
+                    'http://t8.baidu.com/it/u=3571592872,3353494284&fm=79&app=86&f=JPEG?w=1200&h=1290',
+                    'http://t7.baidu.com/it/u=4019684067,3383687304&fm=79&app=86&f=JPEG?w=492&h=800'
+                ],
+                imgIndex: 0 //属性命令不能以_开头
+            },
+            methods: {
+                updateCurrent: function () {
+                    this.current = new Date()
+                    if(this.imgIndex > this.imgSrcArr.length - 1) {
+                        this.imgIndex = 0
+                    }
+                    this.imgSrc = this.imgSrcArr[this.imgIndex++]
+                }
+            },
+            mounted: function () {
+                var _this = this
+                this.timer = setInterval(this.updateCurrent, 1000) //传入setInterval的参数只能是方法名，不能加()
+            },
+            beforeDestory: function () {
+                if(this.timer) {
+                    clearInterval(this.timer)
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>
