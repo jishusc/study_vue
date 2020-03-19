@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>components_2</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-child></my-child>
+        <my-child></my-child>
+        <my-child></my-child>
+    </div>
+    <script>
+        var Child = {
+            template: '<div style="font-size:24px" @click="counter++">{{counter}}</div>',
+            data: function () {
+                return {
+                    counter: 0
+                }
+            }
+        }
+        new Vue({
+            el: '#app',
+            components: {
+                'my-child': Child
+            }
+        })
+    </script>
+</body>
+</html>

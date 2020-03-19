@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>component props</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input v-model="warningText"/>
+        <my-comp :warning-text="warningText"></my-comp>
+    </div>
+    <script>
+        Vue.component('my-comp', {
+            props: ['warningText'],
+            template: '<div>{{warningText}}</div>'
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                warningText: ''
+            }
+        })
+    </script>
+</body>
+</html>
